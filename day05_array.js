@@ -113,3 +113,54 @@ console.log(hari.join(" - "))
 // Spread operator
 let kendaraan = [...mobil, ...motor, "Kereta", "Bus", "Pesawat"]
 console.table(kendaraan)
+
+// ⏺️ namaVariableArray.sort() : mengurutkan data berdasarkan string secara ascending
+
+let siswa = ["Budi", "Andrew", "Mikel", "Edo", "Daniel"]
+let nilai = [39, 3, 26, 14, 2, 8, 26, 17, -15]
+console.log(siswa)
+siswa.sort()
+console.log(siswa)
+
+// Ascending
+nilai.sort(function (a, b) {
+    return a - b
+})
+console.log(nilai)
+
+// descending
+nilai.sort(function (a, b) {
+    return b - a
+})
+console.log(nilai)
+
+
+///////////////////////////// ARRAY LOOP //////////////////////////////
+// digunakan untuk mengakses data array
+
+let list = "";
+for (let idx = 0; idx < siswa.length; idx++) {
+    list += `${idx + 1}. ${siswa[idx]}\n`;
+}
+
+console.log(list)
+
+
+/////////////////////////// Array 2 dimensi /////////////////////////
+// Data array yang berisi array
+
+let dataBarang = [
+    ["Jaket", 20, 150000],
+    ["Kaos", 10, 35000],
+    ["Sepatu", 5, 55000]
+]
+
+console.log(dataBarang[2][0] + " Stoknya = " + dataBarang[2][1] + " Harga " + dataBarang[2][2])
+console.log(dataBarang[0].length)
+
+let print = ""
+for (let i = 0; i < dataBarang.length; i++) {
+    print += `${i + 1}. ${dataBarang[i][0]}, Stoknya = ${dataBarang[i][1]}, Rp. ${dataBarang[i][2]}\n`;
+};
+
+console.log(print)
