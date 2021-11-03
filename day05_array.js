@@ -159,8 +159,20 @@ console.log(dataBarang[2][0] + " Stoknya = " + dataBarang[2][1] + " Harga " + da
 console.log(dataBarang[0].length)
 
 let print = ""
-for (let i = 0; i < dataBarang.length; i++) {
-    print += `${i + 1}. ${dataBarang[i][0]}, Stoknya = ${dataBarang[i][1]}, Rp. ${dataBarang[i][2]}\n`;
-};
+// for (let i = 0; i < dataBarang.length; i++) {
+//     print += `${i + 1}. ${dataBarang[i][0]}, Stoknya = ${dataBarang[i][1]}, Rp. ${dataBarang[i][2]}\n`;
+// };
+
+// versi 1 
+dataBarang.forEach(function (item, idx) {
+    print += `${idx + 1}. ${item[0]}, Stoknya = ${item[1]}, Rp. ${item[2]}\n`;
+})
+
+// versi 2
+// function printList(item,idx){
+//     print += `${idx + 1}. ${item[0]}, Stoknya = ${item[1]}, Rp. ${item[2]}\n`;
+// }
+
+// dataBarang.forEach(printList)
 
 console.log(print)
