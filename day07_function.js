@@ -165,8 +165,9 @@ function filterCloning(arr, callbackFn) {
     for (let i = 0; i < arr.length; i++) {
         // memproses setiap data array didalam callbackFunction
         let results = callbackFn(arr[i], i);
-        // memasukkan data array kedalam newArray
+        // jika output callback true
         if (results) {
+            // maka data array akan dimasukkan kedalam newArray
             newArr.push(arr[i]);
         }
     }
