@@ -51,6 +51,7 @@ user.email = "kenzo@mail.com";
 
 // Syntax 3 : Syntax Class Object ==> untuk menjadi bluePrint atau cetakan dari suatu data object
 
+// Class Utama
 class Manusia {
     constructor(_name, _gender, _usia) {
         this.name = _name;
@@ -67,3 +68,58 @@ console.log(paijo)
 
 daftarPenduduk.push(new Manusia("Paijo", "Laki-laki", 20))
 console.log(daftarPenduduk)
+
+// INHERITANCE ==> pewarisan data dari class utama agar dapat digunakan pada class turunan
+// Class turunan
+class Pekerjaan extends Manusia {
+    constructor(_name, _gender, _usia, _profesi, _gaji) {
+        super(_name, _gender, _usia)
+        this.profesi = _profesi
+        this.gaji = _gaji
+    }
+}
+
+let pekerja = new Pekerjaan("Tanjiro", "L", 17, "Samurai", 6500000)
+console.log(pekerja)
+
+
+//////////////////////////////////////// SYNTAX OBJECT //////////////////////////////////////
+// 1. Penulisan LABEL/PROPERTY
+// Cara 1
+let namaBarang = "Air Jordan"
+let size = 43;
+
+let produk = {
+    nama: namaBarang,
+    ukuran: size
+}
+
+// Cara 2
+// let nama = "Air Jordan X"
+// let ukuran = 45;
+
+// let produkB = {
+//     nama,
+//     ukuran
+// }
+
+// Looping Object
+// for (let property in produkB) {
+//     console.log(property) // label/poperty dari object yang dilooping
+//     console.log(produkB[property]) // value dari object berdasrkan property
+// }
+
+// DESTRUCTURE : membuat variable berdasarkan property pada object
+// DESTRUCTURE : mengakses secara langsung property dan value pada object
+// OBJECT
+let { nama, ukuran } = produk;
+console.log(nama)
+console.log(ukuran)
+
+// DESTRUCTURE : membuat variable untuk menampung setiap value pada array sesuai urutan indexnya
+// ARRAY
+let siswaA = ["edo", "jr", 12, "Science"];
+let [namaDepan, namaBelakang, usia, jurusan] = siswaA
+
+console.log(siswaA[0], siswaA[1]);
+console.log(namaDepan, namaBelakang);
