@@ -167,7 +167,7 @@ function filterCloning(arr, callbackFn) {
         let results = callbackFn(arr[i], i);
         // memasukkan data array kedalam newArray
         if (results) {
-            newArr.push(results);
+            newArr.push(arr[i]);
         }
     }
     // mengeluarkan data array yang baru
@@ -177,5 +177,9 @@ let filterUang = uang.filter(function (item, index) {
     return item < 10000
 })
 
+console.log("arr.filter",filterUang)
+
+console.log(filterCloning(uang, function (item, index) {
+    return item < 10000
+}))
 // console.log(uang)
-// console.log(filterUang)
