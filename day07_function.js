@@ -30,7 +30,7 @@ function penjumlahan() {
 
 let jumlah = penjumlahan()
 
-console.log("output penjumlahan", jumlah + 10)
+// console.log("output penjumlahan", jumlah + 10)
 
 // Parameter
 // let numA = 20; ❌
@@ -43,7 +43,7 @@ function pengurangan(param1, param2) {
 let angka1 = 12;
 let angka2 = 14;
 // Argument = angka1 dan angka2
-console.log(pengurangan(angka1, angka2))
+// console.log(pengurangan(angka1, angka2))
 
 // // NOTE : Menggunakan fungsi ⚠️⚠️⚠️⚠️
 // penjumlahan; // ini akan hanya memanggil, tidak menjalankan function
@@ -76,8 +76,8 @@ function perkalian(cb, param2) {
 
 
 // Callback function : sebuah fungsi yang membutuhkan fungsi lain untuk dimasukkan kedalam parameter/argument
-console.log(perkalian(() => 2 + 5, 2))//14
-console.log(perkalian(function () { return 2 + 10 }, 2))//24
+// console.log(perkalian(() => 2 + 5, 2))//14
+// console.log(perkalian(function () { return 2 + 10 }, 2))//24
 
 ///////////////////////////////Array Function Advance///////////////////////////////////////
 // // ⏺️ namaVariableArray.forEach() : melooping sebuah data array dan tidak bisa menghasilkan array baru atau tidak menghasilkan return.
@@ -88,8 +88,8 @@ let dataBarang = [
     ["Sepatu", 5, 55000]
 ]
 
-console.log(dataBarang[2][0] + " Stoknya = " + dataBarang[2][1] + " Harga " + dataBarang[2][2])
-console.log(dataBarang[0].length)
+// console.log(dataBarang[2][0] + " Stoknya = " + dataBarang[2][1] + " Harga " + dataBarang[2][2])
+// console.log(dataBarang[0].length)
 
 let print = ""
 // Kalau menggunakan looping
@@ -109,14 +109,37 @@ dataBarang.forEach(function (item, idx) {
 
 // dataBarang.forEach(printList)
 
-console.log(print)
+// console.log(print)
 
 // // ⏺️ namaVariableArray.map() : mengolah data array untuk menjadi data array baru. 
 
+function mapCallBack(item, idx) {
+    return item - 1
+}
 let nmbr = [1, 2, 3, 45, 6, 7, 21]
-let kali2 = nmbr.map(function (item, idx) {
-    return item * 2
-})
+let kali2 = nmbr.map(mapCallBack);
+
+console.log("dari array.map", kali2) //[2,4,6,90,12,14,42]
+
+// buat fungsi cloning map
+function mapCloning(arr, callbackFn) {
+    // penampung data array yang baru
+    let newArr = [];
+    // mengakses setiap data array
+    for (let i = 0; i < arr.length; i++) {
+        // memproses setiap data array didalam callbackFunction
+        let results = callbackFn(arr[i], i);
+        // memasukkan data array kedalam newArray
+        newArr.push(results);
+    }
+    // mengeluarkan data array yang baru
+    return newArr
+}
+
+let newNmbr = mapCloning(nmbr, mapCallBack)
+
+
+console.log("dari mapCloning ==>", newNmbr) //[2,4,6,90,12,14,42]
 
 
 function cetak(item, idx) {
@@ -125,18 +148,34 @@ function cetak(item, idx) {
 
 let listProduk = dataBarang.map(cetak)
 
-console.log(nmbr)
-console.log(kali2)
-console.log(listProduk)
-console.log(listProduk.join(""))
+// console.log(nmbr)
+// console.log(kali2)
+// console.log(listProduk)
+// console.log(listProduk.join(""))
 
 // // ⏺️ namaVariableArray.filter() : mengolah data array untuk menjadi data array baru berdasarkan condition.
 
 let uang = [1000, 2000, 4000, 10000, 25000]
 
+
+function filterCloning(arr, callbackFn) {
+    // penampung data array yang baru
+    let newArr = [];
+    // mengakses setiap data array
+    for (let i = 0; i < arr.length; i++) {
+        // memproses setiap data array didalam callbackFunction
+        let results = callbackFn(arr[i], i);
+        // memasukkan data array kedalam newArray
+        if (results) {
+            newArr.push(results);
+        }
+    }
+    // mengeluarkan data array yang baru
+    return newArr
+}
 let filterUang = uang.filter(function (item, index) {
     return item < 10000
 })
 
-console.log(uang)
-console.log(filterUang)
+// console.log(uang)
+// console.log(filterUang)

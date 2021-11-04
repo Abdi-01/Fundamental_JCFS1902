@@ -33,9 +33,37 @@ let siswa = {
             grade: 90
         }
     ]
+};
+
+siswa.status = "Active";
+console.log(siswa);
+console.log(siswa.fullName);
+console.log(siswa.class);
+console.log(siswa["age"]);
+console.log(siswa.value[0].mapel);
+
+
+// Syntax 2 : Keyword "new Object"
+let user = new Object();
+
+user.username = "Kenzo";
+user.email = "kenzo@mail.com";
+
+// Syntax 3 : Syntax Class Object ==> untuk menjadi bluePrint atau cetakan dari suatu data object
+
+class Manusia {
+    constructor(_name, _gender, _usia) {
+        this.name = _name;
+        this.gender = _gender;
+        this.usia = _usia;
+    }
 }
 
-console.log(siswa.fullName)
-console.log(siswa.class)
-console.log(siswa["age"])
-console.log(siswa.value[0].mapel)
+let daftarPenduduk = [];
+
+let paijo = new Manusia("Paijo", "L", 23)
+
+console.log(paijo)
+
+daftarPenduduk.push(new Manusia("Paijo", "Laki-laki", 20))
+console.log(daftarPenduduk)
