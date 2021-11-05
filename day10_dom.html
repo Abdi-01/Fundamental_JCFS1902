@@ -38,8 +38,10 @@
                     <option value="Coder">Coder</option>
                     <option value="Desainer">Desainer</option>
                 </select>
+                
+                <input id="email" type="email" placeholder="Masukkan email"><br>
             </form>
-            <button type="button" onclick="btSimpan()">Upload Data</button>
+            <button id="btSimpan" type="button" onclick="btSimpan()">Upload Data</button>
         </fieldset>
         <table>
             <!-- thead : menyusun kolom -->
@@ -52,6 +54,7 @@
                     <th>Usia</th>
                     <th>Gender</th>
                     <th>Pekerjaan</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <!-- tbody : menampilkan data pada tabel -->
@@ -71,6 +74,15 @@
      * 
      * */ 
 
+     let emailTrigger = document.getElementById("email")
+
+     emailTrigger.addEventListener("keyup",(event)=>{
+         if(event.keyCode==13){
+             event.preventDefault()
+             document.getElementById("btSimpan").click()
+         }
+     })
+
 
     function btSimpan() {
         // Cara 1 : Mengambil data dari element input berdasarkan id
@@ -84,6 +96,7 @@
         let usia = form.elements[1].value
         let gender = form.elements["gender"].value
         let pekerjaan = form.elements["pekerjaan"].value
+        let email = form.elements[5].value
 
         // let hobi1 = form.elements[4].checked ? form.elements[4].value : null
         // let hobi2 = form.elements[5].checked ? form.elements[5].value : null
@@ -94,6 +107,7 @@
             <td>${usia}</td>
             <td>${gender}</td>
             <td>${pekerjaan}</td>
+            <td>${email}</td>
             </tr>`
         // alert(username)
 
