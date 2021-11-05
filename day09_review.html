@@ -1,0 +1,52 @@
+<script>
+    // Generate Title Case
+    let kalimat = prompt("Masukkan Kalimat")
+
+    // toTitle = (title) => {
+    //     let titleCase = "";
+
+    //     for (let i = 0; i < title.length; i++) {
+    //         if (i == 0) {
+    //             titleCase += title.charAt(i).toUpperCase();
+    //         } else if (title.charAt(i - 1) == " ") {
+    //             titleCase += title.charAt(i).toUpperCase();
+    //         } else {
+    //             titleCase += title.charAt(i).toLowerCase();
+    //         }
+    //     }
+
+    //     return titleCase
+    // }
+
+    // alert(toTitle(kalimat))
+
+    vowel = (sentence) => {
+        let huruf = {
+            vokal: "",
+            konsonan: ""
+        }
+        let vokal = "aiueo"
+
+        for (let i = 0; i < sentence.length; i++) {
+            if (isNaN && sentence.toLowerCase().charCodeAt(i) >= 97 && sentence.toLowerCase().charCodeAt(i) <= 122) {
+                if (vokal.includes(sentence.charAt(i).toLowerCase())) {
+                    if (!huruf.vokal.includes(sentence.charAt(i).toLowerCase())) {
+                        huruf.vokal += sentence.charAt(i).toLowerCase()
+                    }
+                } else {
+                    if (!huruf.konsonan.includes(sentence.charAt(i).toLowerCase()) && sentence.charAt(i) != " ") {
+                        huruf.konsonan += sentence.charAt(i).toLowerCase()
+                    }
+                }
+            }
+        }
+
+        return `
+        Kalimat = ${sentence}
+        huruf vokal = ${huruf.vokal}        
+        huruf konsonan = ${huruf.konsonan}        
+        `
+    }
+
+    alert(vowel(kalimat))
+</script>

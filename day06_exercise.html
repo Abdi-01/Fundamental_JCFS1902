@@ -1,0 +1,130 @@
+<script>
+    // let barang = [
+    //     "Oreo Strawberry",
+    //     "Oreo Coklat",
+    //     "Chitato BBQ",
+    //     "Chitato Rumput Laut",
+    //     "Beng-beng"];
+    // let search = prompt("Masukkan data yang dicari :"); //ponari
+    // let list = "";
+    // let count = 1;
+    // for (let idx = 0; idx < barang.length; idx++) {
+    //     if (barang[idx].toLowerCase().includes(search.toLowerCase())) {
+    //         list += `${count}. ${barang[idx]}\n`;
+    //         count++;
+    //     }
+    // }
+
+    // if(list != ""){
+    //     alert(`Hasil Pencarian :\n${list}`)
+    // }else{
+    //     alert(`Barang tidak ada`)
+    // }
+
+    /**
+     * input : oreo
+     *
+     * output:
+     * Barang ditemukan :
+     * 1. Oreo Strawberry
+     * 2. Oreo Coklat
+    */
+
+    // Versi 1
+    // if (index >= 0 && index != null) {
+    //     alert(`Data yang anda cari : ${search} ada di index ke-${index} ✅`)
+    // } else {
+    //     alert(`Data yang anda cari : ${search} tidak ada ❌`)
+    // }
+
+    // Versi 2 : ternary operator
+    // alert(`Data yang anda cari : ${search} ${index >= 0 && index != null ? `ada di index ke-${index} ✅` : "tidak ada ❌"}`)
+
+
+    class Barang {
+        constructor(_name, _stock, _price) {
+            this.name = _name
+            this.stock = _stock
+            this.price = _price
+        }
+    }
+    
+    let warehouse = [
+        {
+            name: "Jaket",
+            stock: 20,
+            price: 150000
+        },
+        {
+            name: "Kaos",
+            stock: 10,
+            price: 35000
+        },
+        {
+            name: "Sepatu",
+            stock: 25,
+            price: 75000
+        }
+    ];
+
+    function cetakList() {
+        let print = ""
+
+        warehouse.forEach(function (item, idx) {
+            print += `${idx + 1}. ${item.name}, Stoknya = ${item.stock}, Rp. ${item.price}\n`;
+        })
+
+        return print
+    }
+
+
+    while (true) {
+        let menu = prompt(`Silahkan pilih menu :
+        1. Tambah Data
+        2. Hapus Data
+        3. Lihat Data`)
+
+        // looping untuk membuat daftar barangnya
+        // let print = "";
+        // for (let i = 0; i < barang.length; i++) {
+        //     print += `${i + 1}. ${barang[i][0]}, Stoknya = ${barang[i][1]}, Rp. ${barang[i][2]}\n`;
+        //     // loop 1 ==> i = 0
+        //     // print = "" + `1. Jaket, Stoknya = 20, Rp. 150000\n`
+        //     // print = `1. Jaket, Stoknya = 20, Rp. 150000\n`
+
+        //     // loop 2 ==> i=1
+        //     // print = `1. Jaket, Stoknya = 20, Rp. 150000\n` + `2. Kaos, Stoknya =  10, Rp. 35000\n`;
+        //     // print = `1. Jaket, Stoknya = 20, Rp. 150000\n2. Kaos, Stoknya =  10, Rp. 35000\n`
+        // };
+
+
+        // print = `1. Jaket, Stoknya = 20, Rp. 150000\n2. Kaos, Stoknya =  10, Rp. 35000\n3. Sepatu, Stoknya =  25, Rp. 75000\n`
+        if (menu == 1) {
+            // do add data
+            let nama = prompt("Masukkan nama barang baru !");
+            let stock = parseInt(prompt("Masukkan stock barang baru !"));
+            let harga = parseInt(prompt("Masukkan harga barang baru !"));
+            warehouse.push(new Barang(nama, stock, harga));
+            // menampilkan list barang
+            alert(`Daftar barang :\n${cetakList()}`)
+            console.log(barang)
+        } else if (menu == 2) {
+            // do delete data
+            let dataBarang = parseInt(prompt(`Pilih barang :\n${cetakList()}`))
+            barang.splice(dataBarang - 1, 1);
+            // setelah hapus brang tampilkan list barang
+            alert(`Daftar barang :\n${cetakList()}`)
+        } else if (menu == 3) {
+            // do list data
+            alert(`Daftar barang :\n${cetakList()}`)
+        } else {
+            // proteksi
+            alert("Menu tidak ada")
+        }
+
+        let konfirmasi = confirm("Kembali kemenu utama ?")
+        if (!konfirmasi) {
+            break
+        }
+    }
+</script>

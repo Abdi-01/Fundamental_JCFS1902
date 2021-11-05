@@ -114,7 +114,11 @@ dataBarang.forEach(function (item, idx) {
 // // ⏺️ namaVariableArray.map() : mengolah data array untuk menjadi data array baru. 
 
 function mapCallBack(item, idx) {
-    return item - 1
+    if (item % 2 == 0) {
+        return `${idx + 1} ${item} Genap`
+    } else {
+        return `${idx + 1} ${item} Ganjil`
+    }
 }
 let nmbr = [1, 2, 3, 45, 6, 7, 21]
 let kali2 = nmbr.map(mapCallBack);
@@ -136,7 +140,13 @@ function mapCloning(arr, callbackFn) {
     return newArr
 }
 
-let newNmbr = mapCloning(nmbr, mapCallBack)
+let newNmbr = mapCloning(nmbr, (item,idx)=>{
+    if (item % 2 == 0) {
+        return `${idx + 1} ${item} Genap`
+    } else {
+        return `${idx + 1} ${item} Ganjil`
+    }
+})
 
 
 console.log("dari mapCloning ==>", newNmbr) //[2,4,6,90,12,14,42]
@@ -178,7 +188,7 @@ let filterUang = uang.filter(function (item, index) {
     return item < 10000
 })
 
-console.log("arr.filter",filterUang)
+console.log("arr.filter", filterUang)
 
 console.log(filterCloning(uang, function (item, index) {
     return item < 10000

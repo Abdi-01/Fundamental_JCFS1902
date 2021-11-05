@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Styling element table */
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 1vw;
+        }
+
+        th {
+            min-width: 5vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <fieldset>
+            <legend><b>Form User</b></legend>
+            <form id="data-form">
+                <input id="username" type="text" placeholder="Masukkan Username"><br>
+                <input id="usia" type="number" placeholder="Masukkan usia"><br>
+                <input type="radio" name="gender" value="Laki-laki">Laki-laki</input><br>
+                <input type="radio" name="gender" value="Perempuan">Perempuan</input><br>
+                <input type="checkbox" id="check1" value="Olahraga">Hobi Olaharaga</input><br>
+                <input type="checkbox" id="check2" value="Musik">Hobi Musik</input><br>
+                <select id="pekerjaan">
+                    <option value="PNS">PNS</option>
+                    <option value="Coder">Coder</option>
+                    <option value="Desainer">Desainer</option>
+                </select>
+            </form>
+            <button type="button" onclick="btSimpan()">Upload Data</button>
+        </fieldset>
+        <table>
+            <!-- thead : menyusun kolom -->
+            <thead>
+                <!-- tr : membuat baris -->
+                <tr>
+                    <!-- th : table head kolom -->
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Usia</th>
+                    <th>Gender</th>
+                    <th>Pekerjaan</th>
+                </tr>
+            </thead>
+            <!-- tbody : menampilkan data pada tabel -->
+            <tbody id="display">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+
+
+    function btSimpan() {
+        // Cara 1 : Mengambil data dari element input berdasarkan id
+        // let username = document.getElementById("username").value
+        // let usia = document.getElementById("usia").value
+
+        // Cara 2 : Mengambil data berdasarkan element parent form
+        let form = document.getElementById("data-form")
+        console.log(form)
+        let username = form.elements[0].value
+        let usia = form.elements[1].value
+        let gender = form.elements["gender"].value
+        let pekerjaan = form.elements["pekerjaan"].value
+
+        let hobi1 = form.elements[4].checked ? form.elements[4].value : null
+        let hobi2 = form.elements[5].checked ? form.elements[5].value : null
+        // menampilkan data ke html
+        document.getElementById("display").innerHTML = `<tr>
+            <td>1</td>
+            <td>${username}</td>
+            <td>${usia}</td>
+            <td>${gender}</td>
+            <td>${hobi1}</td>
+            <td>${hobi2}</td>
+            <td>${pekerjaan}</td>
+            </tr>`
+        // alert(username)
+    }
+
+
+
+
+</script>
+
+</html>

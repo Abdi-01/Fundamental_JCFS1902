@@ -1,0 +1,38 @@
+<script>
+
+    // prompt : untuk menerima input
+    // let data = prompt("Masukkan nilai ")
+    // // menampilkan : untuk menampilkan data
+    // console.log(data)
+    // alert(data)
+
+
+    // alert("Mari berhitung 😁")
+
+    // let angka_pertama = parseInt(prompt('Masukkan angka pertama'))
+    // let angka_kedua = parseInt(prompt('Masukkan angka kedua'))
+
+    // let Pembagian = angka_pertama / angka_kedua, Perkalian = angka_pertama * angka_kedua;
+
+    // alert(`Hasil perhitungan :
+    // 1. Penjumlahan ${angka_pertama} + ${angka_kedua} = ${angka_pertama + angka_kedua}
+    // 2. Pengurangan ${angka_pertama} - ${angka_kedua} = ${angka_pertama - angka_kedua}
+    // 3. Pembagian ${angka_pertama} / ${angka_kedua} = ${Pembagian}
+    // 4. Perkalian ${angka_pertama} * ${angka_kedua} = ${Perkalian}`)
+
+    let jumlahHari = parseInt(prompt('Masukkan jumlah hari'))
+    let tahun, bulan, minggu, sisaHari;
+
+    tahun = Math.floor(jumlahHari / 360)
+    sisaHari = jumlahHari % 360
+
+    bulan = Math.floor(sisaHari / 30)
+    sisaHari = sisaHari % 30
+
+    minggu = Math.floor(sisaHari / 7)
+    sisaHari = sisaHari % 7
+
+    alert(`${tahun} Tahun, ${bulan} Bulan, ${minggu} Minggu, ${sisaHari} Hari`)
+
+
+</script>

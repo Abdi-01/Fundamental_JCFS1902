@@ -84,7 +84,7 @@ console.log(pekerja)
 
 
 //////////////////////////////////////// SYNTAX OBJECT //////////////////////////////////////
-// 1. Penulisan LABEL/PROPERTY
+// Penulisan LABEL/PROPERTY
 // Cara 1
 let namaBarang = "Air Jordan"
 let size = 43;
@@ -123,3 +123,15 @@ let [namaDepan, namaBelakang, usia, jurusan] = siswaA
 
 console.log(siswaA[0], siswaA[1]);
 console.log(namaDepan, namaBelakang);
+
+// DATE OBJECT
+let waktu = new Date()
+
+console.log(waktu.getFullYear());//mendapakan tahun
+console.log(waktu.getMonth());//mendapakan bulan 0-11
+console.log(waktu.getDate());//mendapakan tgl 1-31
+console.log(waktu.getDay());//mendapakan hari 0-6 --> start from sunday
+console.log(waktu.getHours());//mendapakan jam
+console.log(waktu.getMinutes());//mendapakan menit
+console.log(waktu.getSeconds());//mendapakan detik
+console.log(waktu.toLocaleString())
