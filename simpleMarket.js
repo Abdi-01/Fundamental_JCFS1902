@@ -56,22 +56,44 @@ function btnSimpan() {
     printProduk()
 }
 
-function printProduk(data = dataProduk) {
+function printProduk(data = dataProduk, selectedIdx) {
     document.getElementById("table-produk").innerHTML = data.map((value, index) => {
-        return `<tr>
-        <td>${value.sku}</td>
-        <td><img src="${value.img}" width="150px"></td>
-        <td>${value.nama}</td>
-        <td>${value.kategori}</td>
-        <td>${value.stok.toLocaleString()}</td>
-        <td>IDR. ${value.harga.toLocaleString()}</td>
-        <td><button  type="button" >Edit</button>
-            <button type="button" onclick="deleteProduk('${value.sku}')">Delete</button>
-        </td>
-    </tr>`
+        // condition jika data yang dipilih
+        if (selectedIdx == index) {
+            return `<tr>
+            <td>${value.sku}</td>
+            <td><img src="${value.img}" width="150px"></td>
+            <td><input type="text" id="nama-baru"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+            <button type="button">Batal</button>
+            <button type="button">Save</button>
+            </td>
+            </tr>
+            `
+        } else {
+            // jika tidak pilih maka yg ditampilkan return
+            return `<tr>
+            <td>${value.sku}</td>
+            <td><img src="${value.img}" width="150px"></td>
+            <td>${value.nama}</td>
+            <td>${value.kategori}</td>
+            <td>${value.stok.toLocaleString()}</td>
+            <td>IDR. ${value.harga.toLocaleString()}</td>
+            <td><button  type="button" onclick="btEdit(${index})">Edit</button>
+                <button type="button" onclick="deleteProduk('${value.sku}')">Delete</button>
+            </td>
+        </tr>`
+        }
+
     }).join('')
 }
 
+const btEdit = (idx) => {
+    printProduk(dataProduk, idx)
+}
 
 const deleteProduk = (sku) => {
     // index versi 1
@@ -89,7 +111,9 @@ const deleteProduk = (sku) => {
      * 4. setelah hapus, kemudian render ulang
      * 
     */
-    
+
+    console.log(sku.split("-"))
+
     let idx = parseInt(sku.split("-")[1]) - 1
     if (confirm(`Anda yakin menghapus produk ${dataProduk[idx].sku} ${dataProduk[idx].nama} ?`)) {
         dataProduk.splice(idx, 1)
