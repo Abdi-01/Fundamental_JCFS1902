@@ -18,6 +18,14 @@ let dataProduk = [
         kategori: "Makanan",
         stok: 12,
         harga: 7500
+    },
+    {
+        sku: "SKU-2-198374",
+        img: "https://id-live-05.slatic.net/p/cc79d0a7f3820ad5916a224e02915312.jpg_720x720q80.jpg_.webp",
+        nama: "Pocari Sweat",
+        kategori: "Minuman",
+        stok: 24,
+        harga: 10000
     }
 ];
 
@@ -48,11 +56,11 @@ function btnSimpan() {
     printProduk()
 }
 
-function printProduk() {
-    document.getElementById("table-produk").innerHTML = dataProduk.map((value, index) => {
+function printProduk(data = dataProduk) {
+    document.getElementById("table-produk").innerHTML = data.map((value, index) => {
         return `<tr>
         <td>${value.sku}</td>
-        <td><img src="${value.img}" width="70%"></td>
+        <td><img src="${value.img}" width="150px"></td>
         <td>${value.nama}</td>
         <td>${value.kategori}</td>
         <td>${value.stok.toLocaleString()}</td>
@@ -63,6 +71,7 @@ function printProduk() {
     </tr>`
     }).join('')
 }
+
 
 const deleteProduk = (idx) => {
     // SKU
@@ -84,6 +93,42 @@ const deleteProduk = (idx) => {
         dataProduk.splice(idx, 1)
         printProduk()
     }
+}
+
+const btnFilter = () => {
+    // 1. get value dari filter form
+    let form = document.getElementById("form-filter")
+    let filterNama = form.elements[0].value
+    let filterMin = form.elements[1].value
+    let filterMax = form.elements[2].value
+    let filterKategori = form.elements[3].value
+    console.log(filterNama, filterMin, filterMax, filterKategori)
+
+    // 2. proses filter data
+    let dataFilter = dataProduk.filter((value, index) => {
+        if (filterKategori != "null") {
+            return value.kategori == filterKategori
+        } else if (filterNama.length > 0) {
+            return value.nama.toLowerCase().includes(filterNama.toLowerCase())
+        } else if (filterMin >= 0 && filterMax >= 0) {
+            return value.harga >= filterMin && value.harga <= filterMax
+        }
+    })
+
+    console.log("Cek data filter", dataFilter)
+
+    // 3. proses cetak data
+    printProduk(dataFilter)
+
+    // Reset form value
+    form.elements[0].value = ""
+    form.elements[1].value = ""
+    form.elements[2].value = ""
+    form.elements[3].value = "null"
+}
+
+const btnReset = () => {
+    printProduk()
 }
 
 printProduk()

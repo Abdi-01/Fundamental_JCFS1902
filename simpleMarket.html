@@ -34,13 +34,13 @@
                 <input type="number" id="max" placeholder="Maximum"><br>
                 <label for="filter-kategori">Kategori</label>
                 <select id="filter-kategori">
-                    <option value="All">All</option>
+                    <option value="null">Pilih Kategori</option>
                     <option value="Makanan">Makanan</option>
                     <option value="Minuman">Minuman</option>
                     <option value="Elektronik">Elektronik</option>
                 </select><br>
-                <button type="button">Cari</button>
-                <button type="button">Reset</button>
+                <button type="button" onclick="btnFilter()">Cari</button>
+                <button type="button" onclick="btnReset()">Reset</button>
             </form>
         </fieldset>
         <fieldset>
