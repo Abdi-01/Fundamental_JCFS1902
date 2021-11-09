@@ -66,15 +66,22 @@ function printProduk(data = dataProduk) {
         <td>${value.stok.toLocaleString()}</td>
         <td>IDR. ${value.harga.toLocaleString()}</td>
         <td><button  type="button" >Edit</button>
-            <button type="button" onclick="deleteProduk(${index})">Delete</button>
+            <button type="button" onclick="deleteProduk('${value.sku}')">Delete</button>
         </td>
     </tr>`
     }).join('')
 }
 
 
-const deleteProduk = (idx) => {
-    // SKU
+const deleteProduk = (sku) => {
+    // index versi 1
+    /**
+     * 1. fungsi button harus mendapatkan data index melalui parameter
+     * 2. jika index ditemukan, baru kita gunakan splice untuk menghpus berdasarkan index
+     * 3. setelah hapus, kemudian render ulang
+     * 
+    */
+    // SKU versi 2
     /**
      * 1. fungsi button harus mendapatkan data sku melalui parameter
      * 2. gunakan data sku untuk mencari index dari data
@@ -82,13 +89,8 @@ const deleteProduk = (idx) => {
      * 4. setelah hapus, kemudian render ulang
      * 
     */
-    // index
-    /**
-     * 1. fungsi button harus mendapatkan data index melalui parameter
-     * 2. jika index ditemukan, baru kita gunakan splice untuk menghpus berdasarkan index
-     * 3. setelah hapus, kemudian render ulang
-     * 
-    */
+    
+    let idx = parseInt(sku.split("-")[1]) - 1
     if (confirm(`Anda yakin menghapus produk ${dataProduk[idx].sku} ${dataProduk[idx].nama} ?`)) {
         dataProduk.splice(idx, 1)
         printProduk()
