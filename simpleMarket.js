@@ -63,13 +63,13 @@ function printProduk(data = dataProduk, selectedIdx) {
             return `<tr>
             <td>${value.sku}</td>
             <td><img src="${value.img}" width="150px"></td>
-            <td><input type="text" id="nama-baru"></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input type="text" id="nama-baru" value="${value.nama}"></td>
+            <td>${value.kategori}</td>
+            <td><input type="number" id="stok-baru" value="${value.stok}"></td>
+            <td><input type="number" id="harga-baru" value="${value.harga}"></td>
             <td>
-            <button type="button">Batal</button>
-            <button type="button">Save</button>
+            <button type="button" onclick="btCancel()">Batal</button>
+            <button type="button" onclick="btSave(${index})">Save</button>
             </td>
             </tr>
             `
@@ -89,6 +89,26 @@ function printProduk(data = dataProduk, selectedIdx) {
         }
 
     }).join('')
+}
+
+
+const btCancel = () => {
+    printProduk()
+}
+
+const btSave = (idx) => {
+    // 1. ambil value dari form edit
+    let nama = document.getElementById("nama-baru").value;
+    let stock = parseInt(document.getElementById("stok-baru").value);
+    let harga = parseInt(document.getElementById("harga-baru").value);
+
+    // 2. menyimpan data yg baru kedalam properti data produk
+    dataProduk[idx].nama = nama
+    dataProduk[idx].stok = stock
+    dataProduk[idx].harga = harga
+
+    // 3. render ulang tampilan
+    printProduk()
 }
 
 const btEdit = (idx) => {
