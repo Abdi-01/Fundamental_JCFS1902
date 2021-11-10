@@ -29,6 +29,10 @@ let dataProduk = [
     }
 ];
 
+let dataKeranjang = []
+
+let totalPayment = 0;
+
 function btnSimpan() {
     // Mengambil data dri element input form
     let form = document.getElementById("form-produk")
@@ -71,6 +75,7 @@ function printProduk(data = dataProduk, selectedIdx) {
             <button type="button" onclick="btCancel()">Batal</button>
             <button type="button" onclick="btSave(${index})">Save</button>
             </td>
+            <td></td>
             </tr>
             `
         } else {
@@ -85,6 +90,7 @@ function printProduk(data = dataProduk, selectedIdx) {
             <td><button  type="button" onclick="btEdit(${index})">Edit</button>
                 <button type="button" onclick="deleteProduk('${value.sku}')">Delete</button>
             </td>
+            <td><button  type="button" onclick="btBeli('${value.sku}')">Beli</button></td>
         </tr>`
         }
 
@@ -178,3 +184,107 @@ const btnReset = () => {
 }
 
 printProduk()
+
+
+///////////////////////////////////////// Transaksi /////////////////////////////////////////////////////
+
+const btBeli = (sku) => {
+    let index = parseInt(sku.split("-")[1] - 1)
+    let qty = parseInt(prompt(`Berapa ${dataProduk[index].nama} ?`, 1))
+    if (qty >= 1) {
+        dataProduk[index].stok -= qty
+        dataKeranjang.push({
+            sku: dataProduk[index].sku,
+            nama: dataProduk[index].nama,
+            kategori: dataProduk[index].kategori,
+            qty,
+            harga: dataProduk[index].harga
+        })
+        printKeranjang()
+        printProduk()
+    } else {
+        alert("Input kamu salah ❌")
+    }
+}
+
+function printKeranjang() {
+    let htmlElement = dataKeranjang.map((value, index) => {
+        return `<tr>
+            <td>${index + 1}</td>
+            <td>${value.sku}</td>
+            <td>${value.nama}</td>
+            <td>${value.kategori}</td>
+            <td>${value.qty}</td>
+            <td>IDR. ${value.harga.toLocaleString()}</td>
+            <td>IDR. ${(value.harga * value.qty).toLocaleString()}</td>
+            <td><button type="button" onclick="btnHapusKeranjang(${index})">Hapus</button></td>
+        </tr>
+        `;
+    })
+
+    document.getElementById("table-keranjang").innerHTML = htmlElement.join('')
+}
+
+function btnHapusKeranjang(index) {
+    let idxProduk = parseInt(dataKeranjang[index].sku.split("-")[1] - 1);
+    // stok dikembalikan ke data produk
+    dataProduk[idxProduk].stok++
+    if (dataKeranjang[index].qty > 1) {
+        dataKeranjang[index].qty--
+    } else {
+        dataKeranjang.splice(index, 1);
+    }
+    printKeranjang()
+    printProduk()
+}
+
+const printTransaksi = () => {
+    let htmlElement = dataKeranjang.map((value, index) => {
+        return `
+        <fieldset>
+            <legend>${value.sku}</legend>
+            <table>
+                <tbody>
+                <tr>
+            <td>${value.sku}</td>
+            <td>${value.nama}</td>
+            <td>${value.kategori}</td>
+            <td>${value.qty}</td>
+            <td>IDR. ${value.harga.toLocaleString()}</td>
+            <td>IDR. ${(value.harga * value.qty).toLocaleString()}</td>
+            </tr>
+                </tbody>
+            </table>
+        </fieldset>        
+        `
+    })
+
+    // menghitung total payment
+    dataKeranjang.forEach((value) => {
+        // totalPayment dideklarasikan sebagai global variable
+        totalPayment += value.harga * value.qty
+    })
+    // proses menampilkan data transaksi
+    document.getElementById("transaksi").innerHTML = htmlElement.join('')
+
+    // menampilkan total payment
+    document.getElementById("total-payment").innerHTML = `Rp. ${totalPayment.toLocaleString()}`
+}
+
+const btBayar = () => {
+    let kembalian = parseInt(document.getElementById("input-bayar").value) - totalPayment
+
+    if(kembalian>0){
+        // menampilkan jumlah kembalian
+        document.getElementById("kembalian").innerHTML = `Rp. ${kembalian.toLocaleString()}`
+    
+        // mengosongkan keranjang
+        dataKeranjang = []
+        printKeranjang()
+    }else{
+        alert("Uang anda kurang")
+    }
+
+}
+
+printKeranjang()

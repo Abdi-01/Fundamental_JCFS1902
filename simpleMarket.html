@@ -71,6 +71,7 @@
                         <th>Stok</th>
                         <th>Harga</th>
                         <th>Action</th>
+                        <th>Pembelian</th>
                     </tr>
                 </thead>
                 <tbody id="table-produk">
@@ -84,6 +85,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>SKU</th>
                         <th>Nama Produk</th>
                         <th>Kategori Produk</th>
                         <th>Kuantitas</th>
@@ -96,7 +98,20 @@
 
                 </tbody>
             </table>
-            <button type="button">Bayar </button>
+            <button type="button" onclick="printTransaksi()">Checkout</button>
+        </fieldset>
+        <fieldset>
+            <legend>Transaksi</legend>
+            <h3>Detail Transaksi</h3>
+            <div id="transaksi">
+                
+            </div>
+            <h3>Total Payment</h3>
+            <h3 id="total-payment"></h3>
+            <label>Masukkan Uang Anda</label>
+            <input type="number" id="input-bayar" placeholder="xxxx">
+            <button type="button" onclick="btBayar()">Bayar</button>
+            <p id="kembalian"></p>
         </fieldset>
     </div>
 </body>
